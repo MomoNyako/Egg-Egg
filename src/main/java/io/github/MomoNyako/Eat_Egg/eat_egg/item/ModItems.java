@@ -2,6 +2,8 @@ package io.github.MomoNyako.Eat_Egg.eat_egg.item;
 
 import io.github.MomoNyako.Eat_Egg.eat_egg.Eat_egg;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroups;
@@ -13,19 +15,29 @@ public class ModItems {
 
     public static final Item BACON_EGGS = registerItem("bacon_eggs",
             new Item(new Item.Settings().food(new FoodComponent.Builder()
-                    .hunger(8).saturationModifier(0.8f).build())));
+                    .hunger(8).saturationModifier(1.6f)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200), 0.5f)
+                    .build())));
 
     public static final Item COOKED_EGG = registerItem("cooked_egg",
             new Item(new Item.Settings().food(new FoodComponent.Builder()
-                    .hunger(3).saturationModifier(0.4f).build())));
+                    .hunger(5).saturationModifier(0.5f).build())));
 
     public static final Item FULL_ENG_BREAKFAST = registerItem("full_eng_breakfast",
             new Item(new Item.Settings().food(new FoodComponent.Builder()
-                    .hunger(14).saturationModifier(1.0f).build())));
+                    .hunger(10).saturationModifier(2.0f)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 200), 1.0f)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 200), 1.0f)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200), 1.0f)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 800), 1.0f)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 800), 1.0f)
+                    .build())));
 
     public static final Item OMELETTE = registerItem("omelette",
             new Item(new Item.Settings().food(new FoodComponent.Builder()
-                    .hunger(6).saturationModifier(0.7f).build())));
+                    .hunger(4).saturationModifier(1.26f)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 200), 0.4f)
+                    .build())));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM,
