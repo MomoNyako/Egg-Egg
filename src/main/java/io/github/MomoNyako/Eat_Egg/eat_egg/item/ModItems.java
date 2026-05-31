@@ -35,7 +35,7 @@ public class ModItems {
 
     public static final Item OMELETTE = registerItem("omelette",
             new Item(new Item.Settings().food(new FoodComponent.Builder()
-                    .hunger(4).saturationModifier(1.26f)
+                    .hunger(6).saturationModifier(1.26f)
                     .statusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 200), 0.4f)
                     .build())));
 
