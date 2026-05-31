@@ -3,9 +3,15 @@
   "id": "eat_egg",
   "version": "${version}",
   "name": "Eat Egg",
-  "description": "",
-  "authors": [],
-  "contact": {},
+  "description": "Eat Eggs 的非官方 Fabric 移植版",
+  "authors": [
+    "MomoNyako",
+    "chameleonwren"
+  ],
+  "contact": {
+    "sources": "https://github.com/MomoNyako/Egg-Egg",
+    "homepage": "https://github.com/wrenard/Eat-Eggs"
+  },
   "license": "LGPL-3.0",
   "icon": "assets/eat_egg/icon.png",
   "environment": "*",

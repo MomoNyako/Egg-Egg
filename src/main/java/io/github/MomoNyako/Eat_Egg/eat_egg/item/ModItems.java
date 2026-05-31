@@ -2,6 +2,7 @@ package io.github.MomoNyako.Eat_Egg.eat_egg.item;
 
 import io.github.MomoNyako.Eat_Egg.eat_egg.Eat_egg;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
+import net.minecraft.block.ComposterBlock;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
@@ -51,5 +52,10 @@ public class ModItems {
             entries.add(FULL_ENG_BREAKFAST);
             entries.add(OMELETTE);
         });
+
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(COOKED_EGG, 0.4f);
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(BACON_EGGS, 0.5f);
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(OMELETTE, 0.6f);
+        ComposterBlock.ITEM_TO_LEVEL_INCREASE_CHANCE.put(FULL_ENG_BREAKFAST, 0.8f);
     }
 }
