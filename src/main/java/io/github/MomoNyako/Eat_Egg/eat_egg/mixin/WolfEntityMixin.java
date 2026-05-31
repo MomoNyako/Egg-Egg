@@ -48,7 +48,7 @@ public class WolfEntityMixin {
         } else if (wolf.isBaby()) {
             if (!wolf.getWorld().isClient) {
                 int age = wolf.getBreedingAge();
-                int ageUp = (int) ((float) (-age / 20) * 0.1);
+                int ageUp = (int) ((float) (-age / 20) * 5.0);
                 wolf.setBreedingAge(age + ageUp);
                 if (!player.getAbilities().creativeMode) {
                     itemStack.decrement(1);
