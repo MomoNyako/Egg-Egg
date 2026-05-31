@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "eat_egg",
+  "version": "${version}",
+  "name": "Eat Egg",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "LGPL-3.0",
+  "icon": "assets/eat_egg/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "fabric-datagen": [
+      "io.github.MomoNyako.Eat_Egg.eat_egg.client.Eat_eggDataGenerator"
+    ],
+    "client": [
+      "io.github.MomoNyako.Eat_Egg.eat_egg.client.Eat_eggClient"
+    ],
+    "main": [
+      "io.github.MomoNyako.Eat_Egg.eat_egg.Eat_egg"
+    ]
+  },
+  "mixins": [
+    "eat_egg.mixins.json",
+    {
+      "config": "eat_egg.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
