@@ -4,6 +4,13 @@ pluginManagement {
             name = 'Fabric'
             url = 'https://maven.fabricmc.net/'
         }
+        maven {
+            name = 'Forge'
+            url = 'https://maven.minecraftforge.net/'
+        }
         gradlePluginPortal()
     }
 }
+
+rootProject.name = 'Eat_Egg'
+include('common', 'fabric', 'forge')
