@@ -19,19 +19,19 @@ public class ModItems {
 
     public static Item baconEggs() {
         return new Item(new Item.Properties().food(new FoodProperties.Builder()
-                .nutrition(8).saturationMod(1.6f)
+                .nutrition(8).saturationModifier(1.6f)
                 .effect(new MobEffectInstance(MobEffects.REGENERATION, 200), 0.5f)
                 .build()));
     }
 
     public static Item cookedEgg() {
         return new Item(new Item.Properties().food(new FoodProperties.Builder()
-                .nutrition(5).saturationMod(0.5f).build()));
+                .nutrition(5).saturationModifier(0.5f).build()));
     }
 
     public static Item fullEngBreakfast() {
         return new Item(new Item.Properties().food(new FoodProperties.Builder()
-                .nutrition(10).saturationMod(2.0f)
+                .nutrition(10).saturationModifier(2.0f)
                 .effect(new MobEffectInstance(MobEffects.NIGHT_VISION, 200), 1.0f)
                 .effect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200), 1.0f)
                 .effect(new MobEffectInstance(MobEffects.REGENERATION, 200), 1.0f)
@@ -42,7 +42,7 @@ public class ModItems {
 
     public static Item omelette() {
         return new Item(new Item.Properties().food(new FoodProperties.Builder()
-                .nutrition(6).saturationMod(1.26f)
+                .nutrition(6).saturationModifier(1.26f)
                 .effect(new MobEffectInstance(MobEffects.NIGHT_VISION, 200), 0.4f)
                 .build()));
     }
@@ -57,7 +57,7 @@ public class ModItems {
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(BuiltInRegistries.ITEM,
-                new ResourceLocation(EatEgg.MOD_ID, name), item);
+                ResourceLocation.fromNamespaceAndPath(EatEgg.MOD_ID, name), item);
     }
 
     public static void registerCompostables() {

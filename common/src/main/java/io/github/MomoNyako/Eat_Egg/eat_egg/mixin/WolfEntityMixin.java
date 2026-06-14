@@ -1,5 +1,6 @@
 package io.github.MomoNyako.Eat_Egg.eat_egg.mixin;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.InteractionHand;
@@ -7,7 +8,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.animal.Wolf;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,9 +21,8 @@ public class WolfEntityMixin {
     private void onInteractMob(Player player, InteractionHand hand, CallbackInfoReturnable<InteractionResult> cir) {
         Wolf wolf = (Wolf) (Object) this;
         ItemStack itemStack = player.getItemInHand(hand);
-        Item item = itemStack.getItem();
 
-        ResourceLocation id = BuiltInRegistries.ITEM.getKey(item);
+        ResourceLocation id = BuiltInRegistries.ITEM.getKey(itemStack.getItem());
         if (!"eat_egg".equals(id.getNamespace())) {
             return;
         }
@@ -32,14 +31,14 @@ public class WolfEntityMixin {
             return;
         }
 
-        FoodProperties food = item.getFoodProperties();
+        FoodProperties food = itemStack.get(DataComponents.FOOD);
         if (food == null) {
             return;
         }
 
         if (wolf.getHealth() < wolf.getMaxHealth()) {
             if (!wolf.level().isClientSide) {
-                wolf.heal(food.getNutrition());
+                wolf.heal(food.saturation());
                 if (!player.getAbilities().instabuild) {
                     itemStack.shrink(1);
                 }
