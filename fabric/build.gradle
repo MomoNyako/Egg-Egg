@@ -1,0 +1,64 @@
+plugins {
+    id 'fabric-loom' version '1.9-SNAPSHOT'
+    id 'maven-publish'
+}
+
+version = rootProject.mod_version
+group = rootProject.maven_group
+base.archivesName = "${rootProject.archives_base_name}-fabric"
+
+loom {
+    runs {
+        client {
+            client()
+            configName = "Minecraft Client"
+            programArgs.addAll("--username", "Dev")
+        }
+        server {
+            server()
+            configName = "Minecraft Server"
+            programArgs.add("--nogui")
+        }
+    }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${rootProject.minecraft_version}"
+    mappings loom.officialMojangMappings()
+
+    modImplementation "net.fabricmc:fabric-loader:${rootProject.fabric_loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_version}"
+
+    modRuntimeOnly "me.shedaniel.cloth:cloth-config-fabric:11.1.118"
+
+    // Local test mods (non-required, for development convenience)
+    modRuntimeOnly files('build/libs/modmenu-7.2.2.jar')
+
+    // Common module
+    implementation project(path: ':common', configuration: 'namedElements')
+    include project(path: ':common', configuration: 'namedElements')
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDir project(':common').file('src/main/resources')
+        }
+    }
+}
+
+processResources {
+    inputs.property "version", rootProject.mod_version
+    filesMatching("fabric.mod.json") {
+        expand "version": rootProject.mod_version
+    }
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = base.archivesName.get()
+            from components.java
+        }
+    }
+}

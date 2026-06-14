@@ -1,0 +1,27 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+
+license = "LGPL-3.0"
+
+[[mods]]
+modId = "eat_egg"
+version = "${version}"
+displayName = "Eat Egg"
+logoFile = "assets/eat_egg/icon.png"
+credits = "Original by chameleonwren"
+authors = "MomoNyako, chameleonwren"
+description = "Eat Eggs 的非官方移植版"
+
+[[dependencies.eat_egg]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.eat_egg]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.1,1.20.2)"
+ordering = "NONE"
+side = "BOTH"

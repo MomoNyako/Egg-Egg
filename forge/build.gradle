@@ -1,0 +1,82 @@
+plugins {
+    id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+    id 'maven-publish'
+}
+
+version = rootProject.mod_version
+group = rootProject.maven_group
+base.archivesName = "${rootProject.archives_base_name}-forge"
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(17)
+}
+
+minecraft {
+    mappings channel: 'official', version: rootProject.minecraft_version
+
+    runs {
+        client {
+            workingDirectory project.file('run')
+            property 'forge.logging.console.level', 'debug'
+            mods {
+                eat_egg {
+                    source sourceSets.main
+                }
+            }
+        }
+        server {
+            workingDirectory project.file('run')
+            property 'forge.logging.console.level', 'debug'
+            args '--nogui'
+            mods {
+                eat_egg {
+                    source sourceSets.main
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${rootProject.minecraft_version}-${rootProject.forge_version}"
+
+    // Local test mods (non-required)
+    // TODO: Replace with correct 1.20.1 versions — current JARs are for 1.20.4
+    // runtimeOnly fg.deobf(files('../build/libs/Jade-1.20.1-Forge-11.13.2.jar'))
+    // runtimeOnly fg.deobf(files('../build/libs/jei-1.20.1-forge-15.20.0.130.jar'))
+}
+
+// Include common module sources and resources directly
+sourceSets {
+    main {
+        java {
+            srcDir project(':common').file('src/main/java')
+        }
+        resources {
+            srcDir project(':common').file('src/main/resources')
+        }
+    }
+}
+
+processResources {
+    inputs.property "version", rootProject.mod_version
+    filesMatching("META-INF/mods.toml") {
+        expand "version": rootProject.mod_version
+    }
+}
+
+// Common module sources are compiled directly via sourceSets above
+jar {
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = base.archivesName.get()
+            from components.java
+        }
+    }
+}
+
+// TODO: runServer task is created by ForgeGradle lazily. If needed,
+// configure standardInput through the minecraft.runs.server block instead.

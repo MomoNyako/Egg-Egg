@@ -1,0 +1,31 @@
+{
+  "schemaVersion": 1,
+  "id": "eat_egg",
+  "version": "${version}",
+  "name": "Eat Egg",
+  "description": "Eat Eggs 的非官方移植版",
+  "authors": [
+    "MomoNyako",
+    "chameleonwren"
+  ],
+  "contact": {
+    "sources": "https://github.com/MomoNyako/Egg-Egg",
+    "homepage": "https://github.com/wrenard/Eat-Eggs"
+  },
+  "license": "LGPL-3.0",
+  "icon": "assets/eat_egg/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "io.github.MomoNyako.Eat_Egg.eat_egg.fabric.EatEggFabric"
+    ]
+  },
+  "mixins": [
+    "eat_egg.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.15.11",
+    "fabric-api": "*",
+    "minecraft": "~1.20.1"
+  }
+}
