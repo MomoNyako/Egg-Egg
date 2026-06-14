@@ -7,7 +7,6 @@ import net.neoforged.fml.common.Mod;
 public class EatEggNeoForge {
 
     public EatEggNeoForge() {
-        // TODO: User will rewrite NeoForge-specific registration code
         EatEgg.init();
     }
 }
